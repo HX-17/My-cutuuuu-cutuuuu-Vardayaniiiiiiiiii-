@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik+Glitch&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  background:linear-gradient(135deg,#ff4d6d,#c9184a,#7209b7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  text-align:center;
+  font-family:'Pacifico',cursive;
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  animation:float 6s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(110vh) scale(.7);opacity:1;}
+  to{transform:translateY(-10vh) scale(1.5);opacity:0;}
+}
+
+/* Sparkles */
+.sparkle{
+  position:absolute;
+  width:6px;height:6px;
+  background:white;border-radius:50%;
+  opacity:.7;
+  animation:twinkle 2s infinite;
+}
+@keyframes twinkle{
+  0%,100%{transform:scale(.5);opacity:.3;}
+  50%{transform:scale(1.6);opacity:1;}
+}
+
+.container{z-index:5;padding:20px;}
+
+.name{
+  font-size:clamp(26px,6vw,46px);
+  letter-spacing:4px;
+  margin-bottom:10px;
+  text-shadow:0 0 20px pink;
+}
+
+.question{
+  font-family:'Rubik Glitch',cursive;
+  font-size:clamp(28px,7vw,52px);
+  text-shadow:0 0 20px hotpink,0 0 50px deeppink;
+  animation:pulse 2.5s infinite;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+}
+
+.buttons{
+  margin-top:40px;
+  display:flex;
+  gap:25px;
+  justify-content:center;
+}
+
+button{
+  padding:16px 34px;
+  font-size:22px;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+}
+
+.yes{
+  background:linear-gradient(45deg,#ff006e,#ffbe0b);
+  box-shadow:0 0 30px #ff4da6;
+  color:white;
+  transition:.3s;
+}
+.yes:hover{transform:scale(1.2);}
+
+.no{
+  background:#222;
+  color:white;
+  position:relative;
+}
+
+/* Celebration */
+.celebration{
+  display:none;
+  z-index:10;
+  font-family:'Rubik Glitch',cursive;
+  font-size:clamp(28px,7vw,56px);
+  text-shadow:0 0 25px hotpink,0 0 60px deeppink;
+  animation:pop 1s forwards;
+}
+@keyframes pop{
+  from{transform:scale(0);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+
+/* GIFS */
+.gifs{
+  margin-top:25px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:16px;
+}
+.gifs img{
+  width:120px;
+  border-radius:18px;
+  box-shadow:0 0 20px pink;
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+}
+
+/* Fireworks */
+.firework{
+  position:absolute;
+  width:6px;height:6px;
+  border-radius:50%;
+  animation:boom 1.4s ease-out forwards;
+}
+@keyframes boom{
+  from{transform:scale(0);opacity:1;}
+  to{transform:scale(28);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Romantic background music -->
+<audio autoplay loop>
+  <source src="https://www.chosic.com/wp-content/uploads/2021/07/Romantic-Piano.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="main">
+  <div class="name" id="typing"></div>
+  <div class="question">
+    WILL YOU BE MY VALENTINE 😭💓?
+  </div>
+
+  <div class="buttons">
+    <button class="yes" id="yes">YES 💖</button>
+    <button class="no" id="no">NO 😏</button>
+  </div>
+</div>
+
+<div class="celebration" id="celebrate">
+  I KNEW YOU LOVE ME MERIIII SHONAAA BABYIEEE 💘
+
+  <div class="gifs">
+    <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif">
+    <img src="https://media.giphy.com/media/1hqb8LwPS2xCNCpWH8/giphy.gif">
+    <img src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif">
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+  </div>
+</div>
+
+<script>
+/* Typing name */
+const nameText="VARDAYANI 💖";
+let i=0;
+(function type(){
+  if(i<nameText.length){
+    document.getElementById("typing").innerHTML+=nameText[i++];
+    setTimeout(type,220);
+  }
+})();
+
+/* Hearts */
+const hearts=["❤️","💖","💘","💝","💕","💞","💓"];
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText=hearts[Math.floor(Math.random()*hearts.length)];
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=Math.random()*28+18+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},200);
+
+/* Sparkles */
+setInterval(()=>{
+  const s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=Math.random()*100+"vw";
+  s.style.top=Math.random()*100+"vh";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),1800);
+},350);
+
+/* NO escape */
+const no=document.getElementById("no");
+function dodge(){
+  no.style.position="absolute";
+  no.style.left=Math.random()*70+"vw";
+  no.style.top=Math.random()*70+"vh";
+}
+no.addEventListener("mouseover",dodge);
+no.addEventListener("touchstart",dodge);
+
+/* YES */
+document.getElementById("yes").onclick=()=>{
+  document.getElementById("main").style.display="none";
+  document.getElementById("celebrate").style.display="block";
+  fireworks();
+};
+
+/* CRAZY fireworks */
+function fireworks(){
+  setInterval(()=>{
+    for(let i=0;i<8;i++){
+      const f=document.createElement("div");
+      f.className="firework";
+      f.style.left=Math.random()*100+"vw";
+      f.style.top=Math.random()*100+"vh";
+      f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+      document.body.appendChild(f);
+      setTimeout(()=>f.remove(),1400);
+    }
+  },220);
+}
+</script>
+
+</body>
+</html>
