@@ -37,7 +37,6 @@ body{
   position:absolute;
   width:6px;height:6px;
   background:white;border-radius:50%;
-  opacity:.7;
   animation:twinkle 2s infinite;
 }
 @keyframes twinkle{
@@ -138,18 +137,37 @@ button{
   from{transform:scale(0);opacity:1;}
   to{transform:scale(28);opacity:0;}
 }
+
+/* Tap to start overlay */
+#tapToStart{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  font-size:26px;
+  text-align:center;
+}
 </style>
 </head>
 
 <body>
 
-<!-- Romantic background music -->
-<audio autoplay loop>
+<!-- Background Music -->
+<audio id="bgMusic" loop>
   <source src="https://www.chosic.com/wp-content/uploads/2021/07/Romantic-Piano.mp3" type="audio/mpeg">
 </audio>
 
+<!-- Tap to start -->
+<div id="tapToStart">
+  💖 Tap anywhere to start the magic 💖
+</div>
+
 <div class="container" id="main">
   <div class="name" id="typing"></div>
+
   <div class="question">
     WILL YOU BE MY VALENTINE 😭💓?
   </div>
@@ -161,8 +179,7 @@ button{
 </div>
 
 <div class="celebration" id="celebrate">
-  I KNEW YOU LOVE ME MERIIII SHONAAA BABYIEEE 💘
-
+  I KNEW YOU LOVE ME MERIIII SHONAAA BABYIEEE 😭😭😭😭😭👉🏻👈🏻🛐🛐💘
   <div class="gifs">
     <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif">
     <img src="https://media.giphy.com/media/1hqb8LwPS2xCNCpWH8/giphy.gif">
@@ -172,8 +189,16 @@ button{
 </div>
 
 <script>
+/* Tap to start music */
+const music=document.getElementById("bgMusic");
+const overlay=document.getElementById("tapToStart");
+overlay.addEventListener("click",()=>{
+  music.play();
+  overlay.style.display="none";
+});
+
 /* Typing name */
-const nameText="VARDAYANI 💖";
+const nameText="MY VARDAYANI BABYIEEE😭🧿😋💖";
 let i=0;
 (function type(){
   if(i<nameText.length){
@@ -204,7 +229,7 @@ setInterval(()=>{
   setTimeout(()=>s.remove(),1800);
 },350);
 
-/* NO escape */
+/* NO button escape */
 const no=document.getElementById("no");
 function dodge(){
   no.style.position="absolute";
@@ -214,14 +239,14 @@ function dodge(){
 no.addEventListener("mouseover",dodge);
 no.addEventListener("touchstart",dodge);
 
-/* YES */
+/* YES click */
 document.getElementById("yes").onclick=()=>{
   document.getElementById("main").style.display="none";
   document.getElementById("celebrate").style.display="block";
   fireworks();
 };
 
-/* CRAZY fireworks */
+/* Crazy fireworks */
 function fireworks(){
   setInterval(()=>{
     for(let i=0;i<8;i++){
